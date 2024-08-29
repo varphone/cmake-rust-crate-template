@@ -1,0 +1,283 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "vcpkg",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/build/${presetName}",
+            "cacheVariables": {
+                "BUILD_DOCS": "ON",
+                "BUILD_EXAMPLES": "ON",
+                "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+                "CMAKE_TOOLCHAIN_FILE": {
+                    "type": "FILEPATH",
+                    "value": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake"
+                }
+            }
+        },
+        {
+            "name": "vcpkg-arm-linux",
+            "displayName": "Configure with Vcpkg for arm-linux",
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/arm-linux-gnueabihf-gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/arm-linux-gnueabihf-g++",
+                "VCPKG_TARGET_TRIPLET": "arm-linux"
+            }
+        },
+        {
+            "name": "vcpkg-arm-linux-debug",
+            "inherits": "vcpkg-arm-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vcpkg-arm-linux-release",
+            "inherits": "vcpkg-arm-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg-arm64-linux",
+            "displayName": "Configure with Vcpkg for arm64-linux",
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "/usr/bin/aarch64-linux-gnu-gcc",
+                "CMAKE_CXX_COMPILER": "/usr/bin/aarch64-linux-gnu-g++",
+                "VCPKG_TARGET_TRIPLET": "arm64-linux"
+            }
+        },
+        {
+            "name": "vcpkg-arm64-linux-debug",
+            "inherits": "vcpkg-arm64-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vcpkg-arm64-linux-release",
+            "inherits": "vcpkg-arm64-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg-x64-linux",
+            "displayName": "Configure with Vcpkg for x64-linux",
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-linux"
+            }
+        },
+        {
+            "name": "vcpkg-x64-linux-debug",
+            "inherits": "vcpkg-x64-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vcpkg-x64-linux-release",
+            "inherits": "vcpkg-x64-linux",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg-x86-mingw-dynamic",
+            "displayName": "Configure with Vcpkg for MinGW x86 dynamic",
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "CMAKE_SYSTEM_NAME": "Windows",
+                "CMAKE_C_COMPILER": "i686-w64-mingw32-gcc",
+                "CMAKE_CXX_COMPILER": "i686-w64-mingw32-g++",
+                "CMAKE_RANLIB": "i686-w64-mingw32-ranlib",
+                "CMAKE_RC_COMPILER": "i686-w64-mingw32-windres",
+                "VCPKG_TARGET_TRIPLET": "x86-mingw-dynamic"
+            }
+        },
+        {
+            "name": "vcpkg-x64-mingw-dynamic",
+            "displayName": "Configure with Vcpkg for MinGW x64 dynamic",
+            "inherits": "vcpkg",
+            "cacheVariables": {
+                "CMAKE_SYSTEM_NAME": "Windows",
+                "CMAKE_C_COMPILER": "x86_64-w64-mingw32-gcc",
+                "CMAKE_CXX_COMPILER": "x86_64-w64-mingw32-g++",
+                "CMAKE_RANLIB": "x86_64-w64-mingw32-ranlib",
+                "CMAKE_RC_COMPILER": "x86_64-w64-mingw32-windres",
+                "VCPKG_TARGET_TRIPLET": "x64-mingw-dynamic"
+            }
+        },
+        {
+            "name": "vcpkg-msvc-x86",
+            "description": "Using compilers for Visual Studio 17 2022 (x86 architecture)",
+            "hidden": true,
+            "inherits": "vcpkg",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x64",
+            "architecture": "win32"
+        },
+        {
+            "name": "vcpkg-msvc-x64",
+            "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+            "hidden": true,
+            "inherits": "vcpkg",
+            "generator": "Visual Studio 17 2022",
+            "toolset": "host=x64",
+            "architecture": "x64"
+        },
+        {
+            "name": "vcpkg-x86-windows",
+            "displayName": "Configure with Vcpkg for x86-windows",
+            "inherits": "vcpkg-msvc-x86",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x86-windows"
+            }
+        },
+        {
+            "name": "vcpkg-x86-windows-debug",
+            "inherits": "vcpkg-x86-windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vcpkg-x86-windows-release",
+            "inherits": "vcpkg-x86-windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "vcpkg-x64-windows",
+            "displayName": "Configure with Vcpkg for x64-windows",
+            "inherits": "vcpkg-msvc-x64",
+            "cacheVariables": {
+                "VCPKG_TARGET_TRIPLET": "x64-windows"
+            }
+        },
+        {
+            "name": "vcpkg-x64-windows-debug",
+            "inherits": "vcpkg-x64-windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "vcpkg-x64-windows-release",
+            "inherits": "vcpkg-x64-windows",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "default",
+            "displayName": "Configure with default settings",
+            "inherits": "vcpkg-x64-linux"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default"
+        },
+        {
+            "name": "vcpkg-arm-linux-debug",
+            "configurePreset": "vcpkg-arm-linux-debug"
+        },
+        {
+            "name": "vcpkg-arm-linux-release",
+            "configurePreset": "vcpkg-arm-linux-release"
+        },
+        {
+            "name": "vcpkg-arm64-linux-debug",
+            "configurePreset": "vcpkg-arm64-linux-debug"
+        },
+        {
+            "name": "vcpkg-arm64-linux-release",
+            "configurePreset": "vcpkg-arm64-linux-release"
+        },
+        {
+            "name": "vcpkg-x64-linux-debug",
+            "configurePreset": "vcpkg-x64-linux-debug"
+        },
+        {
+            "name": "vcpkg-x64-linux-release",
+            "configurePreset": "vcpkg-x64-linux-release"
+        },
+        {
+            "name": "vcpkg-x86-mingw-dynamic",
+            "configurePreset": "vcpkg-x86-mingw-dynamic"
+        },
+        {
+            "name": "vcpkg-x64-mingw-dynamic",
+            "configurePreset": "vcpkg-x64-mingw-dynamic"
+        },
+        {
+            "name": "vcpkg-x86-windows-debug",
+            "configurePreset": "vcpkg-x86-windows-debug",
+            "configuration": "Debug"
+        },
+        {
+            "name": "vcpkg-x86-windows-release",
+            "configurePreset": "vcpkg-x86-windows-release",
+            "configuration": "Release"
+        },
+        {
+            "name": "vcpkg-x64-windows-debug",
+            "configurePreset": "vcpkg-x64-windows-debug",
+            "configuration": "Debug"
+        },
+        {
+            "name": "vcpkg-x64-windows-release",
+            "configurePreset": "vcpkg-x64-windows-release",
+            "configuration": "Release"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "default",
+            "configurePreset": "default",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true
+            }
+        },
+        {
+            "name": "vcpkg-x64-linux-debug",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x64-linux-debug"
+        },
+        {
+            "name": "vcpkg-x64-linux-release",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x64-linux-release"
+        },
+        {
+            "name": "vcpkg-x86-windows-debug",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x86-windows-debug"
+        },
+        {
+            "name": "vcpkg-x86-windows-release",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x86-windows-release"
+        },
+        {
+            "name": "vcpkg-x64-windows-debug",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x64-windows-debug"
+        },
+        {
+            "name": "vcpkg-x64-windows-release",
+            "inherits": "default",
+            "configurePreset": "vcpkg-x64-windows-release"
+        }
+    ]
+}
